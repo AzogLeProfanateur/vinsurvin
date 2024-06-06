@@ -1,0 +1,72 @@
+body{
+    background-color: rgb(237, 214, 152)
+}
+li{
+    display:inline-flex;
+    border:solid;
+    border-radius:25rem;
+    padding-top:5px;
+    padding-bottom: 5px;
+    padding-left:10px;
+    padding-right: 10px;
+    margin-left:25px;
+}
+li:hover{
+    background-color: rgb(109 , 7 , 26);
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    color:white
+}
+
+.titre{
+    display: flex;
+    justify-content: center;
+}
+
+.divFOrm{
+    
+    border:solid;
+    display: flex;
+    justify-content: center;
+}
+table{
+    border-collapse: collapse;
+    border: 2px solid rgb(140 140 140);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+.titre{
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+    color: rgb(109 , 7 , 26);
+}
+form{
+    display: flex;
+    justify-content: center;
+    margin-top:10rem;
+}
+
+.input{
+    margin-right: 40px;
+    margin-left: 40px;
+    padding-right: 40px;
+    padding-left:40px;
+    padding-top:20px;
+    padding-bottom: 20px;
+    border-radius: 25rem;
+    text-align: center;
+    font-size: larger;
+    color: rgb(109 , 7 , 26);
+}
+.btnForm{
+    color: rgb(109 , 7 , 26);
+}
+.descVin{
+    display: flex;
+    justify-content: center;
+}
