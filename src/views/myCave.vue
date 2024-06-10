@@ -1,6 +1,6 @@
 <template>
   <compo-barre> </compo-barre>
-  <table class="tab">
+  <table class="tabVin">
     <tr>
       <th> Id </th>
       <th>Nom</th>
@@ -10,6 +10,7 @@
       <th>Annee</th>
       <th>Contenance</th>
       <th>supprimer</th>
+      <th>consulter</th>
     </tr>
     <compo-tab v-for="vin in listeVin" :vin="vin" :key="vin.IdVin" />
   </table>
@@ -17,6 +18,7 @@
 <script>
 import compoBarre from "@/components/compoBarre.vue";
 import compoTab from "@/components/compoTab.vue";
+let valUti = localStorage.getItem('id')
 export default {
   name: "myCave",
   components: {
@@ -29,21 +31,20 @@ export default {
   },
   methods: {
     afficheVin: async function afficherVins() {
+      let envoiU = new FormData()
+      envoiU.append('id',valUti)
+      console.log(localStorage.getItem('id'))
+      console.log(valUti)
+      console.log(document.getElementById('id'))
       //let monTab = document.getElementById("tab");
       const reponse = await fetch(
-        "https://leperre.alwaysdata.net/backVinSurVin/getWine.php");
+        "https://leperre.alwaysdata.net/backVinSurVin/getWine.php",{
+          method:'POST',
+          body:envoiU
+        });
       this.listeVin = await reponse.json();
       console.log(this.listeVin);
-    },
-    deleteVin: async function deleteVins() {
-      const reponse = await fetch(
-        "http://localhost/vinSurVin/backVinSurVin/deleteWine.php",{
-          method:'DELETE'
-        }
-      );
-      console.log(reponse)
-     
-    },
+    }
   },
   data() {
     return {
@@ -57,7 +58,7 @@ export default {
 body {
   background-color: rgb(237, 214, 152);
 }
-.tab{
+.tabVin{
   margin:auto;
   margin-top:200;
 }

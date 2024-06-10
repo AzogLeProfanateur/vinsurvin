@@ -9,8 +9,8 @@
             <th>{{ vin.LibelContenance }}</th>
             
             
-            <th><button class="btnSup" v-on:click="deleteVin(vin.IdVin)">Supprimer</button></th>
-            <th><button  v-on:click="redirect()">Consulter</button></th>
+            <th><button id="btnDelete" class="btnSup" v-on:click="deleteVin(vin.IdVin)">Supprimer</button></th>
+            <th><button id="btnConsult"  v-on:click="consult()">Consulter</button></th>
             </tr>
 </template>
 <script>
@@ -23,7 +23,7 @@ export default {
             deleteVin: async function deleteVins (IdVin) {
                 let formDelete = new FormData()
                 formDelete.append('id',this.vin.IdVin)
-          const reponse =  fetch("https://leperre.alwaysdata.net/backVinSurVin/deleteWine.php",{
+          const reponse =  fetch("http://localhost/vinSurVin/backVinSurVin/getWine.php",{
             method : 'POST',
             body:formDelete
           }
@@ -38,6 +38,12 @@ export default {
             console.log(formDelete);
             console.log("coucou");
         },
+        consult :  function(){
+            this.$router.push('/Accord')
+            localStorage.setItem('vin',this.vin.IdVin)
+            console.log(this.vin.IdVin)
+
+        }
        
     }
 }

@@ -1,7 +1,7 @@
 <template>
     
-<input v-model="connexion.login" type="text" name="login" id="login" placeholder="Login">
-<input v-model="connexion.mdp" type="text" name="mdp" id="mdp" placeholder="Mot de passe">
+<input v-model="this.connexion.login" type="text" name="login" id="login" placeholder="Login">
+<input v-model="this.connexion.mdp" type="password" name="mdp" id="mdp" placeholder="Mot de passe">
        
     
     <button @click="connexionUti()">connexion</button>
@@ -21,37 +21,40 @@ export default{
         }
     },
     methods:{
-        connexionUti : function (){
+          connexionUti : async function (){
             let formCo = new FormData();
-            formCo.append('login',JSON.stringify(this.connexion.login))
-            formCo.append('mdp',JSON.stringify(this.connexion.mdp))
+            formCo.append('login',this.connexion.login)
+            formCo.append('mdp',this.connexion.mdp)
 
-            const sendData = fetch('http://localhost/vinSurVin/backVinSurVin/connexion.php',{
+            const sendDataCo =  await fetch('https://leperre.alwaysdata.net/backVinSurVin/connexion.php',{
                 method:'POST',
                 body:formCo
                 
             })
-            console.log(sendData)
             
-
-            .then(response=>response.json())
-            .then(response=>{
-                
-                if(response.statut == 200){
-                    window.alert('Connexion Réussie')
-                    this.dataStore.IdUtilisateur = response.IdUtilisateur
-                    console.log(this.dataStore.IdUtilisateur)
-                    this.$router.push('/')
-                }
+           
+            const response = await sendDataCo.json()
+            //
+            console.log(response)
+            if(response.id){
+            
+           await this.$router.push('/')
+            
+            console.log('connexion réussie')
+            localStorage.setItem('id',response.id)
+            
+            } 
                 else{
-                    window.alert('Connexion échouée')
-                
+                    
+                    await this.$router.push('/connexion')
                 }
             }
-            )
+            
+           
+
         }
     }
-}
+
 </script>
 <style>
 </style>

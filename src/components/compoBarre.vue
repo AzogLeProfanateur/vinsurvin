@@ -10,7 +10,7 @@
             <router-link class="nav-link" to="/ajoutVin"> ajouter un vin</router-link>
         </li>
         <li>
-            <router-link class="nav-link" to="/ajoutAmi"> ajouter Ami</router-link>
+            <router-link class="nav-link" to="/ajoutAmi"> Ami</router-link>
         </li>
         <li>
           <a href="Accueil.html">Déconnexion</a>
@@ -41,5 +41,13 @@ a{
 }
 a:hover{
     color:white
+}
+
+@media (max-width: 600px) {
+    li{
+        display:block;
+    }
+   
+    
 }
 </style>
