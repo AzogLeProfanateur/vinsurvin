@@ -2,7 +2,7 @@
 
     <input v-model="this.motCle" name="cleVin" class="input" type="text">
         
-    <button @click="searchWine()">rechercher le vin</button>
+    <button v-on:click="recherche()">rechercher le vin</button>
 
 
 
@@ -16,10 +16,10 @@ export default {
         }
     },
     method:{
-        searchWine:async function (){
+        recherche:  function  (){
             let formMot = new FormData();
-            formMot.append('motCle',this.motCle);
-            const envoiMot = fetch('https://leperre.alwaysdata.net/backVinSurVin/searchWine.php',{
+            formMot.append('cleVin',this.motCle);
+            const envoiMot = fetch('http://localhost/vinSurVin/backVinSurVin/searchWine.php',{
                 method:'POST',
                 body:formMot
                
